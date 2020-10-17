@@ -1,0 +1,429 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>
+	DMX Shield for Arduino with isolation
+</title><link href="DMX%20Shield%20for%20Arduino%20with%20isolation_files/mathertel.css" rel="stylesheet" type="text/css"></head>
+<body>
+  <div class="HEADER">
+    
+<div class="PageTitle">
+  <div class="MAIN">
+    <img src="DMX%20Shield%20for%20Arduino%20with%20isolation_files/logo32.png" class="Logo" alt="create and share" title="create and share">
+    <a href="http://www.mathertel.de/Default.aspx" class="Logo" title="Home">mathertel.de</a>
+    <div style="text-align: left; margin-top: 12px">
+      <div class="VEMenuBar" style="margin-bottom: 6px">
+        <a class="VEMenu" href="http://www.mathertel.de/Default.aspx" hover="true">home</a>&nbsp; <a class="VEMenu" href="http://www.mathertel.de/MyProjects.aspx" hover="true">projects</a>&nbsp; <a class="VEMenu" href="http://ajaxaspects.blogspot.com/" hover="true">blog</a>&nbsp; <a class="VEMenu" href="http://www.mathertel.de/impressum.aspx" hover="true">contact</a>&nbsp;
+      </div>
+    </div>
+  </div>
+</div>
+<span class="SITEMAPPATH"><a href="#Header1_ctl00_SkipLink"><img alt="Skip Navigation Links" src="DMX%20Shield%20for%20Arduino%20with%20isolation_files/WebResource.gif" style="border-width:0px;" width="0" height="0"></a><span><a title="Public projects of Matthias Hertel." href="http://www.mathertel.de/Default.aspx">www.mathertel.de</a></span><span>&nbsp;--&gt;&nbsp;</span><span><a title="A collection of articles for the Arduino platform with software libraries, schematics and complete projects." href="http://www.mathertel.de/Arduino/default.aspx">Arduino Projects</a></span><span>&nbsp;--&gt;&nbsp;</span><span><a title="This Shield is an isolated DMX and RDM interface for the Arduino without risking your damages from high voltage peaks." href="http://www.mathertel.de/Arduino/DMXShield.aspx">DMX Shield with isolation</a></span><a id="Header1_ctl00_SkipLink"></a></span>
+
+  </div>
+  <div class="CONTAINER">
+    <div class="CONTENT">
+      
+<div class="COLOR_ARDUINO"><h1>DMX Shield for Arduino with isolation</h1></div>
+
+      <p>This DMX Shield enables sending and receiving DMX signals by 
+using a save DMX hardware including isolation. Ideal for DMX projects
+        without risking processor damages from high voltage peaks. </p>
+      <h2>Download</h2>
+      <p>Download the project files including the Eagle based schema and board design:</p>
+      <ul>
+        <li><a href="http://www.mathertel.de/Arduino/DMXShieldStart.aspx">DMXShield.zip</a></li>
+      </ul>
+      <p>I sometimes may have some boards available so you can ask for per mail.</p>
+
+      <h2>Hardware design of the shield</h2>
+      <p>The ideas behind the hardware design are:</p>
+      <ul>
+        <li>One shield for DMX sending and receiving<br>
+          There are some Arduino Shield designs and standalone projects 
+available that only support for one direction of communication. Because
+          I played around with both scenarios I built a solution that 
+allows both roles in a DMX setup. When only a receiver or sender 
+situation
+          is needed it is possible to leave some components unpopulated.</li>
+        <li>Support of DMX and RDM<br>
+          This requirement results in an explicit controlling of the 
+direction of the communication and enabling/disabling the receiving and
+          sending drivers. Also the main controller also has to be 
+terminated and must provide a bias to keep the level in the ‘marking 
+state’
+          when no driver is enabled. </li>
+        <li>Galvanic decoupling<br>
+          If you like a robust system and like to use your laptop or 
+computer in a rough environment it is essential to decouple the systems
+          and eliminate so called ground loops. Especially on stage 
+you’ll be glad about that!</li>
+        <li>Simple solution for beginners<br>
+          All the components can be mounted on the Shield without much 
+soldering experience and the extra components for supporting RDM and
+          extra components for isolation can easily be left away </li>
+        <li>The shield also provides 3 PWM LED outputs (red, green and blue).</li>
+        <li>The DMX sockets are not part of the Shield layout to enable a flexible design of the box.</li>
+      </ul>
+      <h2>Schema</h2>
+      <p>The schema for this board is designed to use the standard 
+serial interface of the Arduino board for sending and reveiving DMX data
+        packages. Therefore the pin 0 and 1 are used to read and send 
+the data. To switch the data direction between sending and receiving
+        the digital pin 2 is used. </p>
+      <p>Here is the complete layout (click to enlarge):</p>
+      <p><a href="http://www.mathertel.de/Arduino/DMXShield/DMXShieldSchema.png" target="_new">
+        <img alt="Schema of the DMX Shield" title="Schema of the DMX Shield" src="DMX%20Shield%20for%20Arduino%20with%20isolation_files/DMXShieldSchema.png" class="DOCSIZE"></a><br>
+        (click to open a full size picture). </p>
+      <p>The details of the Shield design are discussed below. </p>
+      <p>Here is a picture of a fully assembled shield from version 2:</p>
+      <p><a href="http://www.mathertel.de/Arduino/DMXShield/DMXShieldFull.v03.jpg" target="_new">
+        <img alt="Arduino DMX Shield" title="Arduino DMX Shield" src="DMX%20Shield%20for%20Arduino%20with%20isolation_files/DMXShieldFull.jpg" class="DOCSIZE"></a><br>
+        (click to open a full size picture). </p>
+      <p>There was still a wiring error with the version I took the photo so the 2 resistors have to be "crossed" and the RGB
+        connector was not present yet. </p>
+      <h2>Driver Chips and DMX bus termination</h2>
+      <p>When searching the internet you can see several chips being 
+used to drive a DMX communication. They all are made to convert 
+logic-level
+        signals (LOW &amp; HIGH) to the EIA-485 differential signal 
+levels on the twisted pair cable. </p>
+      <p>Very common are the chips from MAXIM that I also use for my 
+implementation. The one I prefer is the MAX485 or MAX481 which are
+        identical with the exception of a low power shut down mode in 
+MAX481 that we don’t need in the DMX scenario. MAX481 and MAX485 from
+        MAXIM: <a href="http://www.maxim-ic.com/datasheet/index.mvp/id/1111">http://www.maxim-ic.com/datasheet/index.mvp/id/1111</a> </p>
+      <p>Other chips often used are the 75176b differential bus transceivers from Texas Instruments.</p>
+      <p>A typical schema using MAX481 for a DMX controller is:</p>
+      <p>
+        <img src="DMX%20Shield%20for%20Arduino%20with%20isolation_files/DMXShieldDriver.png" alt="The schema of a DMX Driver chip" title="The schema of a DMX Driver chip" class="DOCSIZE">
+      </p>
+      <p>In addition a +5V supply must be connected to pin 8 and the ground level to pin 5 of the MAX481 chip.</p>
+      <p>The three resistors are the termination of the DMX bus. These 
+resistors MUST be present at the controlling node of a DMX bus. R2
+        is eliminating echo packets while R1 and R3 keep the DMX line in
+ logical HIGH state when no controller is sending. This is especially
+        useful when implementing RDM supporting controllers. </p>
+      <p>A controller that is not designed for RDM can leave the resistors R1 and R3 and use 120 Ω for R2.</p>
+      <p>When using the DMX controller chip within a slave node the resistors on the board SHOULD NOT be populated at all. The last node
+        of the DMX bus MUST be terminated using a termination socket with a 120 Ω inside. </p>
+      <p>Pin 2 that chip controls whether the receive (pin 2) is active 
+amd pin 3 does the same for&nbsp; the output direction. Because
+        the pin 2 is internally inverted (marked as an invertion sign at
+ pins 2 connection to the amplifier) both pins can connected together
+        and can be controlled only by one logical signal. If the signal 
+is high the output direction is enabled, if the signal is low, the
+        input direction is enabled.&nbsp; </p>
+      <h2>Isolation</h2>
+      <p>For a simple setup it is possible to connect the Driver chip 
+directly to the Arduino pins but if you need a robust system, especially
+        on a stage environment, you will have to add some more 
+electronics to avoid electrical damage by defect equipment or accidental
+        circumstances. </p>
+      <p>The electric potential of the DMX side of the implementation have to be isolated from the processor. There are 2 sort of chips
+        that implement all you need: </p>
+      <ol>
+        <li>A 5 volt to 5 volt DC/DC converter with galvanic decoupling.<br>
+          There are complete solutions in a single component available 
+like NME0505SC or AM1S-0505SZ that can be used to generate a 5V power
+          supply that is galvanic isolated up to 1000V. So even if there
+ is a high voltage attached to the DMX bus there is a chance of no
+          or low damage.</li>
+        <li>High speed TTL compatible Optocouplers<br>
+          These chips use a LED and light sensitive transistor to 
+isolate the DMX bus from the Arduino data pins. There are standard TTL 
+compatible
+          Optocouplers available like the 6N137 from MOTOROLA.</li>
+      </ol>
+      <p>There are 3 data signals from the arduino that have to be brought from the arduinos side to the DMX side: transmit, receive and
+        the data direction: </p>
+      <p>
+        <img src="DMX%20Shield%20for%20Arduino%20with%20isolation_files/DMXShieldInsolation.png" alt="The schema used for isolating the data and control lines." title="The schema used for isolating the data and control lines." class="DOCSIZE">
+      </p>
+      <h4>Full partslist &amp; building plan</h4>
+      <table class="STDTAB">
+        <colgroup span="3">
+          <col style="width: 50px">
+          <col style="width: 50px">
+          <col style="width: 280px">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Part name</th>
+            <th>Value</th>
+            <th><b>Description</b></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="3">
+              <p><b>Starting with the low parts...</b> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>R4, R6</td>
+            <td>330 Ω</td>
+            <td>Bands: (orange, orange, black, black, brown*)<br>
+              or (orange, orange, brown, silver*)</td>
+          </tr>
+          <tr>
+            <td>R5, R8, R9</td>
+            <td>470 Ω</td>
+            <td>Bands: (yellow, purple, black, brown, brown*) or (yellow, purple, brown, silver*)</td>
+          </tr>
+          <tr>
+            <td>R7</td>
+            <td>4,7 kΩ</td>
+            <td>Bands: (yellow, purple, black, black, brown*) or (yellow, purple, red, silver*)</td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <p><b>The resistors R1 - R3 should be adjusted for the role of the DMX board in your DMX setup.
+                <br>
+                This configuration is for a DMX / RDM Controller. Don't use them when implementing a DMX or RDM Slave.</b> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>R1, R3</td>
+            <td>562 Ω</td>
+            <td>Bands: (green, blue, red, black, brown*)<br>
+            </td>
+          </tr>
+          <tr>
+            <td>R2</td>
+            <td>133 Ω</td>
+            <td>Bands: (brown, orange, orange, black, brown*)</td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <p><b>Now the capacitators...</b> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>C1,C2,C3,C4</td>
+            <td>100n</td>
+            <td>Capacitors stabilizing the power. Label: 104</td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <p><b>The dc-dc converter...</b> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>DC1</td>
+            <td>NME 0505</td>
+            <td>A dc-dc-converter. The chip that provides another 5 v source for the DMX signal converter.</td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <p><b>Now you can check if the secondary 5v power is existing.</b> </p>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <p><b>The optocouplers and the driver chips...</b> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>IC1</td>
+            <td>MAX481CPA</td>
+            <td>A MAX481CPA from Maxim or another supplier used to convert the differential DMX signal into a logical signal.<br>
+              The 8 pin chip can be soldered directly or put on a socket. Be sure to place it in the right direction.</td>
+          </tr>
+          <tr>
+            <td>OK1, OK2, OK3</td>
+            <td>6N137</td>
+            <td>The optocouplers.<br>
+              The 8 pin chip can be soldered directly or put on a socket. Be sure to place it in the right direction.</td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <p><b>...and the connectors</b> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>DMX</td>
+            <td></td>
+            <td>1X03 pinhead. I cut it from a longer (20 pin) one.</td>
+          </tr>
+          <tr>
+            <td>RGB</td>
+            <td></td>
+            <td>1X04 pinhead</td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>Simplifying</h2>
+      <p>When equipping the board it is possible to let off some components and thus to achieve simplification and cost reduction.</p>
+      <p>Here is a picture of a partly assembled shield from version 2 
+where all isolating components have been left off and only the sending
+        and direction signal have been bridged. </p>
+      <p><a href="http://www.mathertel.de/Arduino/DMXShield/DMXShieldPartly.v02.jpg" target="_new">
+        <img src="DMX%20Shield%20for%20Arduino%20with%20isolation_files/DMXShieldPartly.jpg" alt="A picture of a simplified DMX Shield" class="DOCSIZE"></a> </p>
+      <p>I have included some comments in the parts list for using the board as a DMX Master, RDM Master and DMX/RDM Slave.</p>
+      <p>If you only need a DMX Master or DMX slave configuration the data direction can be set to a constant level.</p>
+      <p>If you only need to send then you should not connect the RX signal so you can still use the USB to upload sketches.</p>
+      <h2>Partslist and variations</h2>
+      <table class="STDTAB">
+        <thead>
+          <tr>
+            <th>Part</th>
+            <th>Value</th>
+            <th>DMX Controller</th>
+            <th>RDM Controller</th>
+            <th>DMX Slave</th>
+            <th>RDM Device</th>
+            <th>no isolation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>C1 – C4</td>
+            <td>100 nF</td>
+            <td>C1, C2, C3 only</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>C1 and C2 only</td>
+          </tr>
+          <tr>
+            <td>DC1</td>
+            <td>dc-dc-converter 0505</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>none</td>
+          </tr>
+          <tr>
+            <td>IC1</td>
+            <td>maxim MAX481CPA</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>OK1 - OK3</td>
+            <td>Optocoupler 6N137</td>
+            <td>only OK2</td>
+            <td></td>
+            <td>only OK3</td>
+            <td></td>
+            <td>none</td>
+          </tr>
+          <tr>
+            <td>R1, R3</td>
+            <td>(see text)</td>
+            <td>none</td>
+            <td>562 Ω</td>
+            <td>none</td>
+            <td>none</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>R2</td>
+            <td>(see text)</td>
+            <td>120 Ω</td>
+            <td>133 Ω</td>
+            <td>none</td>
+            <td>none</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>R4, R6</td>
+            <td>330 Ω</td>
+            <td>R4 only</td>
+            <td></td>
+            <td>none</td>
+            <td></td>
+            <td>none</td>
+          </tr>
+          <tr>
+            <td>R5, R7, R8, R9</td>
+            <td>470 Ω</td>
+            <td>R8 only</td>
+            <td></td>
+            <td>R5 and R7 only</td>
+            <td></td>
+            <td>none</td>
+          </tr>
+          <tr>
+            <td>DMX</td>
+            <td>3 pin connector</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td>Bridge R9</td>
+            <td></td>
+            <td>Bridge OK1: pin 6 and 5</td>
+            <td></td>
+            <td>Bridge used data lines from Shield pin to MAX481 pin</td>
+          </tr>
+        </tbody>
+      </table>
+      <iframe style="width: 980px; display: block; height: 200px; overflow: hidden; border: 0px solid black" src="DMX%20Shield%20for%20Arduino%20with%20isolation_files/DMXShieldPrototypeGallery.html" scrolling="no"></iframe>
+      <h2>Links</h2>
+      <p>A schema design I used for designing this shield can be found at: <a href="http://www.mikrocontroller.net/topic/190608">http://www.mikrocontroller.net/topic/190608</a></p>
+      <p>&nbsp;</p>
+      <p>This work is licensed under a BSD style license. See <a href="http://www.mathertel.de/License.aspx">http://www.mathertel.de/License.aspx
+      </a></p>
+      <h2>History</h2>
+      <ul>
+        <li>02.09.2011 Published PCB version v02.</li>
+        <li>22.11.2012 Version v03 including a new connector for simple RGB LED.</li>
+        <li>10.01.2013 It's proofed: The shield is also working with RDM packets.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="SIDEBAR">
+    
+<div align="center">
+<div style="padding:4px 0px 4px 0px">
+<form action="http://www.google.com/cse" id="cse-search-box">
+  <div>
+    <input name="cx" value="partner-pub-7960252409517973:bknuxt-3rgj" type="hidden">
+    <input name="ie" value="UTF-8" type="hidden">
+    <input name="q" size="16" style="height: 16px; background: url(&quot;http://www.google.com/cse/intl/en/images/google_custom_search_watermark.gif&quot;) no-repeat scroll left center rgb(255, 255, 255);" type="text"><input name="sa" value="&gt;" style="height: 22px;" type="submit">
+  </div>
+<input value="www.mathertel.de/Arduino/DMXShield.aspx" name="siteurl" type="hidden"><input value="www.mathertel.de/Arduino/DMXSerial.aspx" name="ref" type="hidden"><input name="ss" type="hidden"></form>
+<script src="DMX%20Shield%20for%20Arduino%20with%20isolation_files/ga.js" async="" type="text/javascript"></script><script type="text/javascript" src="DMX%20Shield%20for%20Arduino%20with%20isolation_files/brand"></script> 
+</div>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7960252409517973";
+google_ad_slot = "5256574873";
+google_ad_width = 120;
+google_ad_height = 600;
+//--></script>
+<script type="text/javascript" src="DMX%20Shield%20for%20Arduino%20with%20isolation_files/show_ads.js"></script><ins style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:120px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:120px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" scrolling="no" width="120" frameborder="0" height="600"></iframe></ins></ins>
+</div>
+
+
+  </div>
+  <div class="FOOTER">
+    
+<hr>
+<p>This page is part of the <a href="http://www.mathertel.de/">http://www.mathertel.de/</a>
+  web site.</p>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-261452-1']);
+  _gaq.push(['_trackPageview']);
+  (function () {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  </div>
+
+
+</body></html>

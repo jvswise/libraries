@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><link rel="Stylesheet" type="text/css" href="DMX%20Shield%20for%20Arduino%20with%20isolation_files/mathertel.css"><title>
+	DMXShield prototype pictures
+</title>
+  <script type="text/javascript" src="DMXShieldPrototypeGallery_data/jcl.js"></script>
+  <style type="text/css">
+    .VEGALLERY {
+      width: 640px;
+    }
+    .VEGALLERY img {
+      display: inline-block;
+      width: 120px;
+      height: auto;
+      vertical-align: middle;
+      border: 1px solid #223355;
+    }
+    
+    img.FULLSIZE {
+      display: inline-block;
+      width: 600px;
+      height: auto;
+      vertical-align: middle;
+      border: 1px solid #223355;
+    }
+    
+    .PageTitle, .SITEMAPPATH {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  
+<div class="PageTitle">
+  <div class="MAIN">
+    <img src="DMX%20Shield%20for%20Arduino%20with%20isolation_files/logo32.png" class="Logo" alt="create and share" title="create and share">
+    <a href="http://www.mathertel.de/Default.aspx" class="Logo" title="Home">mathertel.de</a>
+    <div style="text-align: left; margin-top: 12px">
+      <div class="VEMenuBar" style="margin-bottom: 6px">
+        <a class="VEMenu" href="http://www.mathertel.de/Default.aspx" hover="true">home</a>&nbsp; <a class="VEMenu" href="http://www.mathertel.de/MyProjects.aspx" hover="true">projects</a>&nbsp; <a class="VEMenu" href="http://ajaxaspects.blogspot.com/" hover="true">blog</a>&nbsp; <a class="VEMenu" href="http://www.mathertel.de/impressum.aspx" hover="true">contact</a>&nbsp;
+      </div>
+    </div>
+  </div>
+</div>
+<span class="SITEMAPPATH"><a href="#Header1_ctl00_SkipLink"><img alt="Skip Navigation Links" src="DMX%20Shield%20for%20Arduino%20with%20isolation_files/WebResource.gif" style="border-width:0px;" width="0" height="0"></a><span><a title="Public projects of Matthias Hertel." href="http://www.mathertel.de/Default.aspx">www.mathertel.de</a></span><span>&nbsp;--&gt;&nbsp;</span><span><a title="A collection of articles for the Arduino platform with software libraries, schematics and complete projects." href="http://www.mathertel.de/Arduino/default.aspx">Arduino Projects</a></span><span>&nbsp;--&gt;&nbsp;</span><span><a title="This Shield is an isolated DMX and RDM interface for the Arduino without risking your damages from high voltage peaks." href="http://www.mathertel.de/Arduino/DMXShield.aspx">DMX Shield with isolation</a></span><span>&nbsp;--&gt;&nbsp;</span><span><a title="Picture gallery of the DMX Shield prototypes." href="http://www.mathertel.de/Arduino/DMXShield/DMXShieldPrototypeGallery.aspx">DMX Shield prototypes pictures</a></span><a id="Header1_ctl00_SkipLink"></a></span>
+
+  
+<div class="COLOR_ARDUINO"><h1>DMXShield prototype pictures</h1></div>
+
+  <div class="VEGALLERY" id="Gallery">
+    <img src="DMXShieldPrototypeGallery_data/DMXShieldProto.jpg" title="A picture of the breadboard I used for my first experiments to make sure DMX works as expected.">
+    <img src="DMXShieldPrototypeGallery_data/DMXShieldProto_002.jpg" title="A picture of the DMX Shield Prototype using a permanent breadboard. I soldered this to have a more robust version on my desk while writing software for it.">
+    <img src="DMX%20Shield%20for%20Arduino%20with%20isolation_files/DMXShieldPartly.jpg" title="A picture of a simplified DMX Shield (v02) by only assembling the core chip and bridging the isolation.">
+    <img src="DMXShieldPrototypeGallery_data/DMXShieldFull.jpg" title="A fully assembled shield version v02. This version still had some issues with wrong connections and had to be modified by jumpers on the back.">
+    <img src="DMX%20Shield%20for%20Arduino%20with%20isolation_files/DMXShieldFull.jpg" title="The correct version of the shield version v03 fully assembled and including an optional connector for PWM outputs.">
+    <img src="DMXShieldPrototypeGallery_data/DmxShield.JPG" title="The DMX Shield Version v03 upon an arduino board.">
+    <hr>
+    <div class="TEXT" style="display: none; padding-bottom: 6px">
+      Here is the title.</div>
+    <div class="PIC" style="display: none">
+    </div>
+  </div>
+  <script type="text/javascript">
+    var GalleryBehavior = {
+      _current: 0,
+
+      init: function () {
+        /// <summary>Initialize the control.</summary>
+        this._images = this.getElementsByTagName("IMG");
+        this._picHolder = jcl.getElementsByClassName(this, "PIC")[0];
+        this._textHolder = jcl.getElementsByClassName(this, "TEXT")[0];
+        if (window.top == window) {
+          document.getElementsByClassName("PageTitle")[0].style.display = "block";
+          document.getElementsByClassName("SITEMAPPATH")[0].style.display = "block";
+          var img = this._picHolder.appendChild(document.createElement("IMG"));
+          img.style.zoom = "100%";
+          img.className = "FULLSIZE";
+          this._picHolder.style.display = "block";
+          this._textHolder.style.display = "block";
+          this.show();
+        }
+      }, // init    
+
+      show: function () {
+        var img = this._images[this._current];
+        this._picHolder.firstElementChild.src = img.src;
+        this._textHolder.innerHTML = img.alt + " " + img.title;
+      },
+
+      onclick: function (evt) {
+        var src = evt.srcElement;
+        if (window.top != window) {
+          window.open(document.URL, "_new", "", false);
+        } else if (src.tagName == "IMG") {
+          for (var n = 0; n < this._images.length; n++) {
+            if ((this._current != n) && (src == this._images[n])) {
+              this._current = n;
+              this.show();
+            } // if
+          } // for
+        }
+
+      } // onclick
+    } // GalleryBehavior
+
+    jcl.LoadBehaviour("Gallery", GalleryBehavior);
+
+  </script>
+
+
+</body></html>

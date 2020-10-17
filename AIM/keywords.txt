@@ -1,0 +1,133 @@
+#######################################
+# Syntax Coloring Map For ArduinoFFT
+#######################################
+
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+byte	KEYWORD1
+Int8	KEYWORD1
+Int16	KEYWORD1
+Int32	KEYWORD1
+Uint8	KEYWORD1
+Uint16	KEYWORD1
+Uint32	KEYWORD1
+AIMPacket	KEYWORD1
+Actions	KEYWORD1
+MenuActions	KEYWORD1
+DeviceTypes	KEYWORD1
+AimHeader	KEYWORD1
+AIMProtocol	KEYWORD1
+TransactionId	KEYWORD1
+
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+FLASH	KEYWORD2
+CheckRam	KEYWORD2
+getProtocolVersion	KEYWORD2
+setProtocolVersion	KEYWORD2
+getEvent	KEYWORD2
+getTransId	KEYWORD2
+setTransId	KEYWORD2
+sendPacket	KEYWORD2
+receivePacket	KEYWORD2
+writeAck	KEYWORD2
+readAck	KEYWORD2
+showAck	KEYWORD2
+writeNack	KEYWORD2
+readNack	KEYWORD2
+showNack	KEYWORD2
+writeHello	KEYWORD2
+readHello	KEYWORD2
+showHello	KEYWORD2
+writeIAmHere	KEYWORD2
+readIAmHere	KEYWORD2
+showIAmHere	KEYWORD2
+writeUAre	KEYWORD2
+readUAre	KEYWORD2
+showUAre	KEYWORD2
+writeForget	KEYWORD2
+readForget	KEYWORD2
+showForget	KEYWORD2
+writeUAlive	KEYWORD2
+readUAlive	KEYWORD2
+showUAlive	KEYWORD2
+writeQuery	KEYWORD2
+readQuery	KEYWORD2
+showQuery	KEYWORD2
+writeAttrs	KEYWORD2
+readAttrs	KEYWORD2
+showAttrs	KEYWORD2
+writeAttrChg	KEYWORD2
+readAttrChg	KEYWORD2
+showAttrChg	KEYWORD2
+writeControl	KEYWORD2
+readControl	KEYWORD2
+showControl	KEYWORD2
+writeReport	KEYWORD2
+readReport	KEYWORD2
+showReport	KEYWORD2
+printEvent	KEYWORD2
+printAction	KEYWORD2
+printDevType	KEYWORD2
+printRetCode	KEYWORD2
+printErrCount	KEYWORD2
+show	KEYWORD2
+getInstance	KEYWORD2
+startAimProtocol	KEYWORD2
+sendAim	KEYWORD2
+handleRxAimPacket	KEYWORD2
+handleRx_Ack	KEYWORD2
+handleRx_Nack	KEYWORD2
+handleRx_Hello	KEYWORD2
+handleRx_IAmHere	KEYWORD2
+handleRx_UAre	KEYWORD2
+handleRx_Forget	KEYWORD2
+handleRx_UAlive	KEYWORD2
+handleRx_Query	KEYWORD2
+handleRx_Attrs	KEYWORD2
+handleRx_AttrChg	KEYWORD2
+handleRx_Control	KEYWORD2
+handleRx_Report	KEYWORD2
+incr	KEYWORD2
+getTransId	KEYWORD2
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+RET_OK	LITERAL1
+RET_ERROR	LITERAL1
+RET_PROTOCOL	LITERAL1
+RET_EVENT	LITERAL1
+RET_TOOLARGE	LITERAL1
+RET_MALFORMED	LITERAL1
+RET_ARGUMENT	LITERAL1
+LOC_MAX	LITERAL1
+MENUNAME_MAX	LITERAL1
+CLASS_MAX	LITERAL1
+UNITS_MAX	LITERAL1
+PKT_ACK	LITERAL1
+PKT_NACK	LITERAL1
+PKT_HELLO	LITERAL1
+PKT_UARE	LITERAL1
+PKT_FORGET	LITERAL1
+PKT_UALIVE	LITERAL1
+PKT_QUERY	LITERAL1
+PKT_ATTRS	LITERAL1
+PKT_ATTRCHG	LITERAL1
+PKT_CONTROL	LITERAL1
+PKT_REPORT	LITERAL1
+PKT_MENUGET	LITERAL1
+PKT_MENUITEM	LITERAL1
+PKT_MENUCTRL	LITERAL1
+PKT_REQCTRL	LITERAL1
+PKT_HANDOFF	LITERAL1
+MAX_PKT_SIZE	LITERAL1
+MAX_ARGS_SIZE	LITERAL1
+DIAG_MAX	LITERAL1
+PROTOCOL_VERSION	LITERAL1
+DEFAULT_AIMP_UDP_PORT	LITERAL1
