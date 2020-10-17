@@ -1,0 +1,175 @@
+#ifndef HAMdefault_h
+#define HAMdefault_h
+
+#include "Arduino.h"
+
+#define MILLION  1000000
+#define THOUSAND 1000
+#define HUNDRED  100
+#define TEN     10
+
+//Alphabet
+#define _A 0x00  
+#define _B 0x01
+#define _C 0x02
+#define _D 0x03
+#define _E 0x04
+#define _F 0x05
+#define _G 0x06
+#define _H 0x07
+#define _I 0x08
+#define _J 0x09
+#define _K 0x0a
+#define _L 0x0b
+#define _M 0x0c
+#define _N 0x0d
+#define _O 0x0e
+#define _P 0x0f
+#define _Q 0x10
+#define _R 0x11
+#define _S 0x12
+#define _T 0x13
+#define _U 0x14
+#define _V 0x15
+#define _W 0x16
+#define _X 0x17
+#define _Y 0x18
+#define _Z 0x19
+
+//Phonetic Alphabet
+#define _ALPHA 0x1a
+#define _BRAVO 0x1b
+#define _CHARLIE 0x1c
+#define _DELTA 0x1d
+#define _ECHO 0x1e
+#define _FOXTROT 0x1f
+#define _GOLF 0x20
+#define _HOTEL 0x21
+#define _INDIA 0x22
+#define _JULIET 0x23
+#define _KILO 0x24
+#define _LIMA 0x25
+#define _MIKE 0x26
+#define _NOVEMBER 0x27
+#define _OSCAR 0x28
+#define _PAPA 0x29
+#define _QUEBEC 0x2a
+#define _ROMEO 0x2b
+#define _SIERRA 0x2c
+#define _TANGO 0x2d
+#define _UNIFORM 0x2e
+#define _VICTOR 0x2f
+#define _WHISKEY 0x30
+#define _XRAY 0x31
+#define _YANKEE 0x32
+#define _ZULU 0x33
+
+//Numbers
+#define _ZERO 0x34
+#define _0 0x34
+#define _ONE 0x35
+#define _1 0x35
+#define _TWO 0x36
+#define _2 0x36
+#define _THREE 0x37
+#define _3 0x37
+#define _FOUR 0x38
+#define _4 0x38
+#define _FIVE 0x39
+#define _5 0x39
+#define _SIX 0x3a
+#define _6 0x3a
+#define _SEVEN 0x3b
+#define _7 0x3b
+#define _EIGHT 0x3c
+#define _8 0x3c
+#define _NINE 0x3d
+#define _9 0x3d
+#define _TEN 0x3e
+#define _10 0x3e
+#define _ELEVEN 0x3f
+#define _11 0x3f
+#define _TWELVE 0x40
+#define _12 0x40
+#define _THIRTEEN 0x41
+#define _13 0x41
+#define _FOURTEEN 0x42
+#define _14 0x42
+#define _FIFTEEN 0x43
+#define _15 0x43
+#define _SIXTEEN 0x44
+#define _16 0x44
+#define _SEVENTEEN 0x45
+#define _17 0x45
+#define _EIGHTEEN 0x46
+#define _18 0x46
+#define _NINETEEN 0x47
+#define _19 0x47
+#define _TWENTY 0x48
+#define _20 0x48
+#define _THIRTY 0x49
+#define _30 0x49
+#define _FORTY 0x4a
+#define _40 0x4a
+#define _FIFTY 0x4b
+#define _50 0x4b
+#define _SIXTY 0x4c
+#define _60 0x4c
+#define _SEVENTY 0x4d
+#define _70 0x4d
+#define _EIGHTY 0x4e
+#define _80 0x4e
+#define _NINETY 0x4f
+#define _90 0x4f
+#define _HUNDRED 0x50
+#define _100 0x50
+#define _THOUSAND 0x51
+#define _1000 0x51
+#define _MILLION 0x52
+
+//Words General
+#define _AC 0x53
+#define _AMPS 0x54
+#define _BAND 0x55
+#define _BOARDCASTING 0x56
+#define _CALLING 0x57
+#define _COME 0x58
+#define _CONTACT 0x59
+#define _DB 0x5a
+#define _DC 0x5b
+#define _DEGREES 0x5c
+#define _FIRST 0x5d
+#define _FREQUENCY 0x5e
+#define _GIGA 0x5f
+#define _GOODBYE 0x60
+#define _HELLO 0x61
+#define _HERE 0x62
+#define _HERTZ 0x63
+#define _HZ 0x63
+#define _IN 0x64
+#define _INCOMING 0x65
+#define _IT 0x66
+#define _KEY 0x67
+#define _KILO 0x68 //DUPLICATED?
+#define _LAST 0x69
+#define _LEVEL 0x6a
+#define _MEGA 0x6b
+#define _OFF 0x6c
+#define _OHMS 0x6d
+#define _ON 0x6e
+#define _OPERATOR 0x6f
+#define _OUT 0x70
+#define _OVER 0x71
+#define _RADIO 0x72
+#define _READY 0x73
+#define _RECEIVING 0x74
+#define _RF 0x75
+#define _SENT 0x76
+#define _SLEEP 0x77
+#define _THE 0x78
+//#define _TWO 0x79
+#define _TRANSMITTING 0x7a
+#define _VOLTS 0x7b
+#define _WATTS 0x7c
+
+#endif

@@ -1,0 +1,66 @@
+Version 3.2.2 (Mar 25, 2018) - LeRoy Miller (C) 2018
+
+added:
+sayNumber(long number)
+sayHours(long number)
+sayMinutes(long number)
+setAMPM(bool AMPM)
+
+sayNumber code based on saynumber example code by Matt Ganis (C) 2018
+		  say a number from zero to 999999999. Speaking not only the digits
+		  but also the value (hundreds, thousands, millions). Thanks to Matt for
+		  the idea. 
+
+sayHours also based on saynumber example code by Matt Ganis.	
+	     code formats military time (24 hour) to am/pm and speaks the digits.
+ 		 code also sets a am/pm flag for sayMinutes.
+
+sayMinutes also based on saynumber example code by Matt Ganis.
+		   says the digits of a given number, adds a leading zero if needed.
+		   says am/pm if set for setAMPM is true
+
+setAMPM this is a bool and can be passed as 1 or 0 or true or false. The 
+		default for this is true. In otherwords say AM/PM.
+		* The HAM chip is missing the words AM and PM, this function is
+		  included, but doesn't do anything. *
+
+* Notes: AM or PM is actually set when you call sayHours. But said when calling
+	sayMinutes - You may get unwanted results if you call sayMinutes before
+	sayHours.  One possiable work around is to setAMPM to false - these will
+	set the flag for 24 hour (almost known as Military) time.
+
+See sayNumber example sketch (Notice: saynumber example is left for historical reasons, it's a good example of how this all works.)
+
+Added example of "say the name of the day when given the Month Day year"
+This is only an example, but may find it's way into the library base at some point.
+Lots of math, and comments on how it works this out.
+This appears to work for any date in the 2000s. (but can be modified to work with
+any date from 1700 to current * see the comments in the sketch)
+
+Version 3.2.3
+added:
+setDelay(int wait)
+
+setDelay - works with the LBT librarys, it is included with the 100+ Word Library (for both chips) but the shield works a bit different
+		   and is only included for compatiablity between libraries.  For the 100+ Word Libraries it doesn't do anything.
+		   for the LBT library you can change the timing it pauses between words. This can have some unpredicatable results.
+		   The timings that appear to work best is somewhere between 625 and 700. 700 is the default timing provided by the 
+		   original example skteches.
+
+Also includes a work around/correction for ESP8266 device compile errors.
+
+Version 4.0.0 Apr 13, 2018
+Found some incompatiablies with some other libraries (specifically some Adafruit Display Libraries). Forced all words to upper case. This will break previous sketches, but is easy to fix with search and replace.  
+  ** As a side note, I had considered making all the words upper case early in  development. And decided that just adding the underscore would solve some problems.  Which it did - but it created other problems. ** 
+
+
+V 4.0.2 - Apr 21, 2018 - Added SI7021 Talking Thermometer/hygrometer by Dr. H
+https://www.instructables.com/id/A-Talking-Sensor-Si7021-and-Little-Buddy-Talker/
+
+V5.0.0 - May 2018 Updated to work with the Big Buddy Talker. (Works a bit different then previous models) 
+
+v5.0.7 - May 28, 2018 changed default timing for BBT to 850, corrected/fixxed sayMinute for BBT
+
+v5.1.0 - Mar 22, 2019 added support for softwareSPI - allows the 100+ Word Shield and E-Z Comms shield to work with the Leonardo and MEGA2560
+Requires: The softwareSPI library by RevPhil https://github.com/RevPhil/arduino_SoftwareSPI
+

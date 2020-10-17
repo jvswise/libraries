@@ -1,0 +1,34 @@
+#######################################
+# Syntax Coloring Map For Wire
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Word100	KEYWORD1
+Word100ham	KEYWORD1
+Word100lbt	KEYWORD1
+Word100bbt	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+say	KEYWORD2
+sayNumber	KEYWORD2
+sayHours	KEYWORD2
+sayMinutes	KEYWORD2
+setAMPM	KEYWORD2
+setDelay	KEYWORD2
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+
